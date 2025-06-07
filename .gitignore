@@ -1,0 +1,36 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Build and output folders
+dist/
+build/
+
+# Coverage directory used by testing tools
+coverage/
+
+# MongoDB dump
+dump/
+
+# Temp files
+*.tmp
+*.swp
+
+# Optional: lock files (use only if you don't want them tracked)
+# package-lock.json
+# yarn.lock
