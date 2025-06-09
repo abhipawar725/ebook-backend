@@ -1,5 +1,6 @@
 import User from "../models/authModels.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 export const Signup = async (req, res) => {
     try {
@@ -29,7 +30,18 @@ export const Login = async (req, res) => {
        const passwordCheck = await user.comparePassword(password)
        if(!passwordCheck) return res.status(401).json({message: "Incorrect password"})
 
-        res.status(200).json({message: "Login successfully"})
+       const payload = {
+        id: user._id,
+        fullname: user.fullname,
+        email: user.email
+       } 
+
+       const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '1d'})
+       res.cookie('token', token, {httpOnly:true})
+        res.status(200).json({
+            message: "Login successfully",
+            token
+        })
 
     } catch (error) {
         res.status(500).json({ message: error.message })
